@@ -6,17 +6,52 @@
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Height" Value="70"/>
-            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontSize" Value="40"/>
             <Setter Property="Background" Value="MidnightBlue"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
         </Style.Setters>
     </Style>
     
     <Style x:Key="Style_ButtonDefault" TargetType="Button">
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="20" />
+            </Style>
+        </Style.Resources>
         <Style.Setters>
-            <Setter Property="Width" Value="70"/>
-            <Setter Property="Height" Value="70"/>
-        </Style.Setters>
-    </Style>
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Margin" Value="5, 10,10,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style.Setters> 
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style> 
     
+    <Style x:Key="Style_ButtonEquals" TargetType="Button">
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+        </Style.Resources>
+        <Style.Setters>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style.Setters> 
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

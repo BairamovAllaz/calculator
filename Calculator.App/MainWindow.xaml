@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator.App"
         mc:Ignorable="d"
-        Title="Calculator" Height="550" Width="400" Background="MidnightBlue">
+        Title="Calculator" Height="480" Width="380" Background="MidnightBlue" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary Source="Style/Styles.xaml"/>
     </Window.Resources>
@@ -15,18 +15,13 @@
                      Style="{StaticResource Style_inputBox}"/>
         </StackPanel>
         <StackPanel>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -42,6 +37,9 @@
                         <Button Content="9" 
                                 Grid.Row="0" Grid.Column="2"
                                 Style="{StaticResource Style_ButtonDefault}"/>
+                        <Button Content="X" 
+                                Style="{StaticResource Style_ButtonDefault}"
+                                Grid.Row="0" Grid.Column="3"/>
                         <Button Content="4" 
                                 Grid.Row="1" Grid.Column="0"
                                 Style="{StaticResource Style_ButtonDefault}"/>
@@ -51,6 +49,9 @@
                         <Button Content="6" 
                                 Grid.Row="1" Grid.Column="2"
                                 Style="{StaticResource Style_ButtonDefault}"/>
+                        <Button Content="/" 
+                                Style="{StaticResource Style_ButtonDefault}"
+                                Grid.Row="1" Grid.Column="3"/>
                         <Button Content="1" 
                                 Grid.Row="2" Grid.Column="0"
                                 Style="{StaticResource Style_ButtonDefault}"/>
@@ -60,6 +61,9 @@
                         <Button Content="3" 
                                 Grid.Row="2" Grid.Column="2"
                                 Style="{StaticResource Style_ButtonDefault}"/>
+                        <Button Content="+" 
+                                Style="{StaticResource Style_ButtonDefault}"
+                                Grid.Row="2" Grid.Column="3"/>
                         <Button Content="CE" 
                                 Grid.Row="3" Grid.Column="0"
                                 Style="{StaticResource Style_ButtonDefault}"/>
@@ -69,16 +73,23 @@
                         <Button Content="." 
                                 Grid.Row="3" Grid.Column="2"
                                 Style="{StaticResource Style_ButtonDefault}"/>    
+                        <Button Content="-" 
+                                Style="{StaticResource Style_ButtonDefault}"
+                                Grid.Row="3" Grid.Column="3"/>
                     </Grid>
-                <StackPanel Grid.Column="1">
-                    <Button Content="1" Style="{StaticResource Style_ButtonDefault}"/>
-                    <Button Content="1" Style="{StaticResource Style_ButtonDefault}"/>
-                    <Button Content="1" Style="{StaticResource Style_ButtonDefault}"/>
-                    <Button Content="1" Style="{StaticResource Style_ButtonDefault}"/>
-                    <Button Content="1" Style="{StaticResource Style_ButtonDefault}"/>
-                    <Button Content="1" Style="{StaticResource Style_ButtonDefault}"/>
-                </StackPanel>
-            </Grid>
+                <Grid Margin="0,6,0,0">
+                        <!-- Define Columns -->
+                        <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>    
+                        <Button Content="C" 
+                                Grid.Column="0"
+                                Style="{StaticResource Style_ButtonEquals}"/>    
+                        <Button Content="=" 
+                                Style="{StaticResource Style_ButtonEquals}"
+                                Grid.Column="1"/>
+                </Grid>
         </StackPanel>
     </StackPanel>
 </Window>
