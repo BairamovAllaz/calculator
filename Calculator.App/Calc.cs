@@ -1,15 +1,71 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Markup;
-
+﻿using System;
 namespace Calculator.App;
 
-public static class Calc
+public class Calc
 {
-    public static List<string> ParseString(string input)
+    public string? Input { get; set; }
+
+    public Calc() {}
+    public Calc(string input)
     {
-        char[] separators = {'-', '+','X','/'};
-        List<string> subs = input.Split(separators).ToList();
-        return subs;
+        Input = input;
+    }
+
+    public int GetResult()
+    {
+        char Operator = GetOperator();
+        if (Operator == ' ')
+        {
+            return 0;
+        }
+        (int num1, int num2) nums = Parser(Operator);
+        return DoCalc(nums.num1, nums.num2, Operator);
+    }
+    
+    public int GetResult(char Operator)
+    {
+        (int num1, int num2) nums = Parser(Operator);
+        return DoCalc(nums.num1, nums.num2, Operator);
+    }
+
+    public bool IsFirst(string input)
+    {
+        Input = input;
+        if (GetOperator() == ' ') return true;
+        return false;
+    }
+
+    private char GetOperator()
+    {
+        if (Input.Contains('+')) return '+';
+        else if (Input.Contains('-')) return '-'; 
+        else if (Input.Contains('/')) return '/'; 
+        else if (Input.Contains('x')) return 'x';
+        else return ' ';
+    }
+    
+    private int DoCalc(int num1,int num2,char Operator)
+    {
+        int result = 0;
+        if (Operator == '+') result = num1 + num2;
+        else if (Operator == '-') result = num1 - num2; 
+        else if (Operator == '/') result = num1 / num2; 
+        else if (Operator == 'x') result = num1 * num2;
+        return result;
+    }
+
+    private (int, int) Parser(char Operator)
+    {
+        if (Input != null)
+        {
+            int index = Input.IndexOf(Operator, StringComparison.Ordinal);
+            int num1 = Convert.ToInt32(Input.Substring(0, index));
+            int num2 = Convert.ToInt32(Input.Substring(index + 1, Input.Length - index - 1));
+            return (num1,num2);
+        }
+        else
+        {
+            return (0, 0);
+        }
     }
 }

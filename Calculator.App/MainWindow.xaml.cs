@@ -11,8 +11,10 @@ namespace Calculator.App
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Calc calc;
         public MainWindow()
         {
+            calc = new Calc();
             InitializeComponent();
         }
 
@@ -32,13 +34,24 @@ namespace Calculator.App
         }
         private void ButttonEqual_OnClick(object sender, RoutedEventArgs e)
         {
-            List<string> l = Calc.ParseString(InputBox.Text);
-            for (int i = 0; i < l.Count; i++)
-            {
-                MessageBox.Show(l[i].ToString());
-            }
+            calc.Input = InputBox.Text;
+            var result = calc.GetResult();
+            InputBox.Text = result.ToString();
         }
         
-        
+        private void ButtonOperation_OnClick(object sender, RoutedEventArgs e)
+        {
+            Button ?button = sender as Button;
+            if (calc.IsFirst(InputBox.Text))
+            {
+                InputBox.Text += button?.Content.ToString();
+            }
+            else
+            {
+                calc.Input = InputBox.Text;
+                var result = calc.GetResult(Convert.ToChar(button.Content));
+                InputBox.Text = result.ToString() + button.Content;
+            }
+        }
     }
 }
