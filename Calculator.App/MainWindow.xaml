@@ -15,7 +15,7 @@
                      Style="{StaticResource Style_inputBox}"/>
         </StackPanel>
         <StackPanel>
-                    <Grid>
+                    <Grid x:Name="CalcGrid">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
