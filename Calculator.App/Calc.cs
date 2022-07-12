@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+
 namespace Calculator.App;
 
 public class Calc
@@ -11,30 +13,23 @@ public class Calc
         Input = input;
     }
 
-    public int GetResult()
+    public decimal GetResult()
     {
         char Operator = GetOperator();
         if (Operator == ' ')
         {
             return 0;
         }
-        (int num1, int num2) nums = Parser(Operator);
+        (decimal num1, decimal num2) nums = Parser(Operator);
         return DoCalc(nums.num1, nums.num2, Operator);
     }
     
-    public int GetResult(char Operator)
+    public decimal GetResult(char Operator)
     {
-        (int num1, int num2) nums = Parser(Operator);
+        (decimal num1, decimal num2) nums = Parser(Operator);
         return DoCalc(nums.num1, nums.num2, Operator);
     }
-
-    public bool IsFirst(string input)
-    {
-        Input = input;
-        if (GetOperator() == ' ') return true;
-        return false;
-    }
-
+    
     private char GetOperator()
     {
         if (Input.Contains('+')) return '+';
@@ -43,10 +38,16 @@ public class Calc
         else if (Input.Contains('x')) return 'x';
         else return ' ';
     }
-    
-    private int DoCalc(int num1,int num2,char Operator)
+
+    public bool CheckOperator(string input)
     {
-        int result = 0;
+        char[] str = { '+', '-', '/', 'x' };
+        return input.Any(str.Contains);
+    }
+    
+    private decimal DoCalc(decimal num1,decimal num2,char Operator)
+    {
+        decimal result = 0;
         if (Operator == '+') result = num1 + num2;
         else if (Operator == '-') result = num1 - num2; 
         else if (Operator == '/') result = num1 / num2; 
@@ -54,18 +55,15 @@ public class Calc
         return result;
     }
 
-    private (int, int) Parser(char Operator)
+    private (decimal, decimal) Parser(char Operator)
     {
         if (Input != null)
         {
             int index = Input.IndexOf(Operator, StringComparison.Ordinal);
-            int num1 = Convert.ToInt32(Input.Substring(0, index));
-            int num2 = Convert.ToInt32(Input.Substring(index + 1, Input.Length - index - 1));
+            decimal num1 = Convert.ToDecimal(Input.Substring(0, index));
+            decimal num2 = Convert.ToDecimal(Input.Substring(index + 1, Input.Length - index - 1));
             return (num1,num2);
         }
-        else
-        {
-            return (0, 0);
-        }
+        return (0, 0);
     }
 }
